@@ -1,35 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./style.css">
     <title>Document</title>
 </head>
 <body>
 
-    <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
-        <div class="gradient-bg p-4" id="nav_text">
-            <h5 class="text-body-emphasis h4">Wähle deinen Trip!</h5>
-            <span class="text-body-secondary">Einblick in deine Reisen</span>
-            <br>
-            <br>
-            <p class="Vication" onclick="close_nav()">Kurztrip</p>
-            <p class="Vication" onclick="close_nav()">Sommer Urlaub</p>
-            <p class="Vication" onclick="close_nav()">Ski Urlaub</p>
-        </div>
+    <div class="navbar" id="mainNav">
+        <h5 >Wähle deinen Trip!</h5>
+        <span >Einblick in deine Reisen</span>
+        <br>
+        <br>
+        <p class="Vication" onclick="close_nav()">Kurztrip</p>
+        <p class="Vication" onclick="close_nav()">Sommer Urlaub</p>
+        <p class="Vication" onclick="close_nav()">Ski Urlaub</p>
     </div>
 
-    <nav class="navbar navbar-dark gradient-bg">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="navbar"></div>
+            <button class="navbar-toggler" type="button" onclick="toggle_nav()">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <h5 id="sc_nvbar">Menü</h5>
+            <h5 id="sc_nvbar" onclick="toggle_nav()">Menü</h5>
         </div>
-    </nav>
 
 
     <h1 id="title">Wähle deine Reise in im Menü aus!!</h1>
@@ -39,17 +33,17 @@
 
     <div class="selectBtns">
         <p class="semiHeader">Bearbeiten</p>
-        <button type="button" class="btn btn-warning" onclick="openUserScreen()">Benutzer</button>
-        <button type="button" class="btn btn-warning">Kosten</button>
+        <button type="button" class="editBtn" onclick="openUserScreen()">Benutzer</button>
+        <button type="button" class="editBtn">Kosten</button>
     </div>
     
             <div id="addUserScreen">
-                <button type="button" class="btn btn-danger" onclick="closeUserScreen()">X</button>
+                <button type="button" id="XUserScreen" onclick="closeUserScreen()">X</button>
                 <h3>Nutzer hinzufügen</h3>
                 <br>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                <div>
+                    <span >Name</span>
+                    <input type="text">
                 </div>
                 <button type="button" class="btn btn-success" id="memmory" onclick="closeUserScreen()">Success</button>
             </div>
@@ -62,24 +56,24 @@
 </body>
     <script>
 
+            function toggle_nav() {
+                document.getElementById('mainNav').classList.toggle('open');
+            }
+
+            
             const titel = document.getElementById("title");
             const Vication = document.querySelectorAll(".Vication");
-
+            
             Vication.forEach(function(punkt) {
                 punkt.addEventListener("click", function() {
                     titel.textContent = this.textContent;
                 });
             });
-
-
+            
             function close_nav() {
-
-                const navbarCollapse = document.getElementById('navbarToggleExternalContent');
-                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) 
-                    || new bootstrap.Collapse(navbarCollapse, { toggle: false });
-                
-                bsCollapse.hide();
+                document.getElementById('mainNav').classList.remove('open')
             }
+            
 
             function openUserScreen() {
                 document.getElementById('addUserScreen').style.display = 'block';
