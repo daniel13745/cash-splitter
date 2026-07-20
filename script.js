@@ -3,18 +3,23 @@ function toggle_nav() {
     document.getElementById('mainNav').classList.toggle('open');
 }
     
-const titel = document.getElementById("title");
-const Vication = document.querySelectorAll(".Vication");
-        
-Vication.forEach(function(punkt) {
+document.addEventListener("DOMContentLoaded", function() {
+
+    function close_nav() {
+        document.getElementById('mainNav').classList.remove('open');
+    }
+
+    const titel = document.getElementById("title");
+    const Vication = document.querySelectorAll(".Vication.nv_txt");
+
+    Vication.forEach(function(punkt) {
         punkt.addEventListener("click", function() {
-         titel.textContent = this.textContent;
+            titel.textContent = this.textContent;
+            close_nav();
+        });
     });
-});
-        
-function close_nav() {
-    document.getElementById('mainNav').classList.remove('open')
-}
+
+}); 
 
 
 function openUserScreen() {
@@ -53,3 +58,4 @@ function createUser(){
 
     console.log(text);
 }
+

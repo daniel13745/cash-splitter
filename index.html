@@ -13,16 +13,16 @@
         <h2 class="nv_txt">Wähle deinen Trip!</h2>
         <p class="nv_txt">Einblick in deine Reisen</p>
         <br>
-        <p class="Vication nv_txt" onclick="close_nav()">Kurztrip</p>
-        <p class="Vication nv_txt" onclick="close_nav()">Sommer Urlaub</p>
-        <p class="Vication nv_txt" onclick="close_nav()">Ski Urlaub</p>
+        <p class="Vication nv_txt">Kurztrip</p>
+        <p class="Vication nv_txt">Sommer Urlaub</p>
+        <p class="Vication nv_txt">Ski Urlaub</p>
     </div>
 
     <div class="navbar"></div>
         <h5 id="sc_nvbar" onclick="toggle_nav()">Menü</h5>
     </div>
 
-    <h1 id="title">Wähle deine Reise im Menü aus !!</h1>
+    <h1 id="title">Wähle eine Reise im Menü</h1>
     <hr>
 
     <div class="selectBtns">
@@ -39,7 +39,7 @@
             <span >Name</span>
             <input type="text" id="name">
         </div>
-        <button type="button" class="btn btn-success" id="memmory" onclick="closeUserScreen(); createUser()">Success</button>
+        <button type="button" class="btn btn-success" id="memmory" onclick="closeUserScreen(); createUser()">hinzufügen</button>
     
     </div>
     
@@ -48,10 +48,12 @@
         <h3>Neuer Buchungsbetrag</h3>
         <br>
         <div>
-            
+        <select id="meinDropdown">
+        <option value="">-- Bitte wählen --</option>
+        </select>
             
         </div>
-        <button type="button" class="btn btn-success" id="memmory" onclick="closeCostScreen(); createUser()">Success</button>
+        <button type="button" class="btn btn-success" id="memmory" onclick="closeCostScreen(); createUser()">hinzufügen</button>
     </div>
     <hr>
     
