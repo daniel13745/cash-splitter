@@ -4,85 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <script src="./script.js"></script>
     <title>Document</title>
 </head>
 <body>
 
     <div class="navbar" id="mainNav">
-        <h5 >Wähle deinen Trip!</h5>
-        <span >Einblick in deine Reisen</span>
+        <h2 class="nv_txt">Wähle deinen Trip!</h2>
+        <p class="nv_txt">Einblick in deine Reisen</p>
         <br>
-        <br>
-        <p class="Vication" onclick="close_nav()">Kurztrip</p>
-        <p class="Vication" onclick="close_nav()">Sommer Urlaub</p>
-        <p class="Vication" onclick="close_nav()">Ski Urlaub</p>
+        <p class="Vication nv_txt" onclick="close_nav()">Kurztrip</p>
+        <p class="Vication nv_txt" onclick="close_nav()">Sommer Urlaub</p>
+        <p class="Vication nv_txt" onclick="close_nav()">Ski Urlaub</p>
     </div>
 
-        <div class="navbar"></div>
-            <button class="navbar-toggler" type="button" onclick="toggle_nav()">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <h5 id="sc_nvbar" onclick="toggle_nav()">Menü</h5>
-        </div>
+    <div class="navbar"></div>
+        <h5 id="sc_nvbar" onclick="toggle_nav()">Menü</h5>
+    </div>
 
-
-    <h1 id="title">Wähle deine Reise in im Menü aus!!</h1>
+    <h1 id="title">Wähle deine Reise im Menü aus !!</h1>
     <hr>
-
-
 
     <div class="selectBtns">
         <p class="semiHeader">Bearbeiten</p>
         <button type="button" class="editBtn" onclick="openUserScreen()">Benutzer</button>
-        <button type="button" class="editBtn">Kosten</button>
+        <button type="button" class="editBtn" onclick="openCostScreen()">Kosten</button>
     </div>
     
-            <div id="addUserScreen">
-                <button type="button" id="XUserScreen" onclick="closeUserScreen()">X</button>
-                <h3>Nutzer hinzufügen</h3>
-                <br>
-                <div>
-                    <span >Name</span>
-                    <input type="text">
-                </div>
-                <button type="button" class="btn btn-success" id="memmory" onclick="closeUserScreen()">Success</button>
-            </div>
-
+    <div id="addUserScreen">
+        <button type="button" id="XUserScreen" onclick="closeUserScreen()">X</button>
+        <h3>Nutzer hinzufügen</h3>
+        <br>
+        <div>
+            <span >Name</span>
+            <input type="text" id="name">
+        </div>
+        <button type="button" class="btn btn-success" id="memmory" onclick="closeUserScreen(); createUser()">Success</button>
+    
+    </div>
+    
+    <div id="addCostScreen">
+        <button type="button" id="XCostScreen" onclick="closeCostScreen()">X</button>
+        <h3>Neuer Buchungsbetrag</h3>
+        <br>
+        <div>
+            
+            
+        </div>
+        <button type="button" class="btn btn-success" id="memmory" onclick="closeCostScreen(); createUser()">Success</button>
+    </div>
     <hr>
-
+    
     <div class="table">
         <p class="semiHeader">Ansicht</p>
+        <ul id="persons"></ul>
     </div>
 </body>
-    <script>
-
-            function toggle_nav() {
-                document.getElementById('mainNav').classList.toggle('open');
-            }
-
-            
-            const titel = document.getElementById("title");
-            const Vication = document.querySelectorAll(".Vication");
-            
-            Vication.forEach(function(punkt) {
-                punkt.addEventListener("click", function() {
-                    titel.textContent = this.textContent;
-                });
-            });
-            
-            function close_nav() {
-                document.getElementById('mainNav').classList.remove('open')
-            }
-            
-
-            function openUserScreen() {
-                document.getElementById('addUserScreen').style.display = 'block';
-            }
-
-            function closeUserScreen() {
-                document.getElementById('addUserScreen').style.display = 'none';
-            }
-
-            
-    </script>
-</html>
+</html>     
