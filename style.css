@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+@media (max-width: 600px) {
+  body {
+    font-size: 15px;
+  }
+    #nav_text{
+        align-items: center;
+        text-align: center;
+    }
+
+
+}
+
+
+body {
+    padding: 0;
+    background-color: #111827;
+    color: #e5e7eb;
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #0d6efd , #fd7e14 );
+}
+
+.Vication {
+    margin: 0;
+    cursor: pointer;
+}
+
+
+h1{
+    margin-top: 5px;
+    text-align: center;
+    color: aliceblue;
+}
+
+.selectBtns {
+    text-align: center;
+
+}
+
+.semiHeader{
+    font-size: x-large;
+    font-weight: 700;
+    text-align: center;
+}
+
+#addUserScreen{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 80%;
+    background: #0b0f19;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+#memmory {
+    display:block;
+    margin: 0 auto;
+
+}
