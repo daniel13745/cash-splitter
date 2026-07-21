@@ -1,4 +1,3 @@
-
 function toggle_nav() {
     document.getElementById('mainNav').classList.toggle('open');
 }
@@ -13,6 +12,11 @@ function closeUserScreen() {
 }
 
 function openCostScreen() {
+    if (!currentTripId) {
+        alert("Bitte zuerst eine Reise auswählen.");
+        return;
+    }
+    fillCostForm();
     document.getElementById('addCostScreen').style.display = 'block';
 }
 
@@ -113,3 +117,138 @@ document.addEventListener("DOMContentLoaded", function() {
 
     renderTripNav();
 });
+
+
+
+
+// Dropdown "Bezahlt von" + Checkboxen "Bezahlt für" mit den Personen der aktuellen Reise füllen
+function fillCostForm() {
+    const trips = loadTrips();
+    const persons = trips[currentTripId].persons;
+
+    const dropdown = document.getElementById('dropdownPayed');
+    dropdown.innerHTML = '<option value="">-- Bitte wählen --</option>';
+    persons.forEach(function(person) {
+        const opt = document.createElement('option');
+        opt.value = person;
+        opt.textContent = person;
+        dropdown.appendChild(opt);
+    });
+
+    const checkboxContainer = document.getElementById('splitCheckboxes');
+    checkboxContainer.innerHTML = '';
+    persons.forEach(function(person) {
+        const label = document.createElement('label');
+        label.style.display = "block";
+
+        const cb = document.createElement('input');
+        cb.type = "checkbox";
+        cb.value = person;
+        cb.className = "splitCheckbox";
+        cb.checked = true; // Standard: alle teilen sich die Kosten
+
+        label.appendChild(cb);
+        label.appendChild(document.createTextNode(" " + person));
+        checkboxContainer.appendChild(label);
+    });
+}
+
+function createCost() {
+    const description = document.getElementById('costDescription').value.trim();
+    const amount = parseFloat(document.getElementById('costAmount').value);
+    const paidBy = document.getElementById('dropdownPayed').value;
+
+    const splitBetween = Array.from(document.querySelectorAll('.splitCheckbox:checked'))
+                               .map(cb => cb.value);
+
+    if (description === "" || isNaN(amount) || amount <= 0 || paidBy === "" || splitBetween.length === 0) {
+        alert("Bitte alle Felder ausfüllen.");
+        return;
+    }
+
+    const trips = loadTrips();
+    const trip = trips[currentTripId];
+    if (!trip.costs) trip.costs = [];
+
+    trip.costs.push({
+        id: "cost_" + Date.now(),
+        description: description,
+        amount: amount,
+        paidBy: paidBy,
+        splitBetween: splitBetween
+    });
+
+    saveTrips(trips);
+
+    document.getElementById('costDescription').value = "";
+    document.getElementById('costAmount').value = "";
+
+    renderCosts();
+    renderBalances();
+}
+
+// Saldo je Person berechnen: positiv = bekommt Geld, negativ = schuldet Geld
+function calculateBalances(trip) {
+    const balance = {};
+    trip.persons.forEach(p => balance[p] = 0);
+
+    (trip.costs || []).forEach(cost => {
+        const anteil = cost.amount / cost.splitBetween.length;
+        balance[cost.paidBy] += cost.amount;
+        cost.splitBetween.forEach(person => {
+            balance[person] -= anteil;
+        });
+    });
+
+    return balance;
+}
+
+function renderBalances() {
+    const trips = loadTrips();
+    const trip = trips[currentTripId];
+    const balance = calculateBalances(trip);
+
+    const container = document.getElementById('balances');
+    if (!container) return;
+    container.innerHTML = '';
+
+    Object.keys(balance).forEach(function(person) {
+        const wert = balance[person];
+
+        const nameEl = document.createElement('div');
+        nameEl.className = 'balance_name';
+        nameEl.textContent = person;
+
+        const wertEl = document.createElement('div');
+        wertEl.className = 'balance_value';
+
+        if (wert > 0.01) {
+            wertEl.textContent = "+" + wert.toFixed(2) + " €";
+            wertEl.classList.add('positive');
+        } else if (wert < -0.01) {
+            wertEl.textContent = "-" + Math.abs(wert).toFixed(2) + " €";
+            wertEl.classList.add('negative');
+        } else {
+            wertEl.textContent = "0.00 €";
+            wertEl.classList.add('neutral');
+        }
+
+        container.appendChild(nameEl);
+        container.appendChild(wertEl);
+    });
+}
+
+function renderCosts() {
+    const trips = loadTrips();
+    const trip = trips[currentTripId];
+
+    const container = document.getElementById('costsList'); // musst du im HTML noch anlegen, siehe unten
+    if (!container) return;
+    container.innerHTML = '';
+
+    (trip.costs || []).forEach(function(cost) {
+        const li = document.createElement('li');
+        li.textContent = cost.description + ": " + cost.amount.toFixed(2) + " € (bezahlt von " + cost.paidBy + ")";
+        container.appendChild(li);
+    });
+}

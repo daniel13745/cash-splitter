@@ -44,6 +44,10 @@ body {
 
 }
 
+#New_Trip{
+    margin-left: 5px;
+}
+
 #mainNav.open{
     max-height: 500px;
     opacity: 1;
@@ -118,7 +122,7 @@ h2{
     left: 50%;
     transform: translate(-50%, -50%);
     width: 300px;
-    height: 300px;
+    height: auto;
     background: #0b0f19;
     padding: 20px;
     box-shadow: 0 0 20px rgba(0,0,0,0.3);
@@ -145,5 +149,32 @@ h2{
     background-color: green;
     width: 80px;
     height: 30px;
+}
 
+.balancesGrid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    row-gap: 8px;
+    column-gap: 16px;
+}
+
+.balance_name {
+    align-self: center;
+}
+
+.balance_value {
+    text-align: right;
+    font-weight: bold;
+}
+
+.balance_value.positive {
+    color: green;
+}
+
+.balance_value.negative {
+    color: red;
+}
+
+.balance_value.neutral {
+    color: gray;
 }

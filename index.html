@@ -14,7 +14,7 @@
         <p class="nv_txt">Einblick in deine Reisen</p>
         <br>
         <div id="tripNav"></div>
-        <button type="button" class="editBtn" onclick="openTripScreen()">+ Reise hinzufügen</button>
+        <button type="button" class="editBtn" id="New_Trip" onclick="openTripScreen()">+ Reise hinzufügen</button>
     </div>
 
     <div class="navbar"></div>
@@ -46,12 +46,21 @@
             <h3>Neuer Buchungsbetrag</h3>
             <br>
             <div>
-            <select id="meinDropdown">
-            <option value="">-- Bitte wählen --</option>
-            </select>
-
+                <p>Beschreibung:</p>
+                <input type="text" id="costDescription" placeholder="z.B. Hotel">
+            
+                <p>Betrag:</p>
+                <input type="number" id="costAmount" placeholder="0.00" step="5.00">
+            
+                <p>Bezahlt von:</p>
+                <select id="dropdownPayed">
+                    <option value="">-- Bitte wählen --</option>
+                </select>
+            
+                <p>Bezahlt für:</p>
+                <div id="splitCheckboxes"></div>
             </div>
-            <button type="button"  class="memmory" onclick="closeCostScreen(); createUser()">hinzufügen</button>
+            <button type="button" class="memmory" onclick="createCost(); closeCostScreen();">hinzufügen</button>
         </div>
     <hr>
     
@@ -61,7 +70,7 @@
             <h3>Reise hinzufügen</h3>
             <br>
             <div>
-                <span>Name</span>
+                <span>Reiseort</span>
                 <input type="text" id="tripName">
             </div>
             <button type="button" class="memmory" onclick="closeTripScreen(); createTrip()">hinzufügen</button>
@@ -69,8 +78,10 @@
 
 
     <div class="table">
-        <p class="semiHeader">Ansicht</p>
-        <ul id="persons"></ul>
+            <p class="semiHeader">Ansicht</p>
+        <div class="balancesGrid" id="balances"></div>
+    <h3>Ausgaben</h3>
+        <ul id="costsList"></ul>
     </div>
 </body>
-</html>     
+</html>
