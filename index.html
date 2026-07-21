@@ -13,9 +13,8 @@
         <h2 class="nv_txt">Wähle deinen Trip!</h2>
         <p class="nv_txt">Einblick in deine Reisen</p>
         <br>
-        <p class="Vication nv_txt">Kurztrip</p>
-        <p class="Vication nv_txt">Sommer Urlaub</p>
-        <p class="Vication nv_txt">Ski Urlaub</p>
+        <div id="tripNav"></div>
+        <button type="button" class="editBtn" onclick="openTripScreen()">+ Reise hinzufügen</button>
     </div>
 
     <div class="navbar"></div>
@@ -31,32 +30,44 @@
         <button type="button" class="editBtn" onclick="openCostScreen()">Kosten</button>
     </div>
     
-    <div id="addUserScreen">
-        <button type="button" id="XUserScreen" onclick="closeUserScreen()">X</button>
-        <h3>Nutzer hinzufügen</h3>
-        <br>
-        <div>
-            <span >Name</span>
-            <input type="text" id="name">
+        <div class="addScreen" id="addUserScreen">
+            <button type="button" class="XScreen" onclick="closeUserScreen()">X</button>
+            <h3>Nutzer hinzufügen</h3>
+            <br>
+            <div>
+                <span >Name</span>
+                <input type="text" id="name">
+            </div>
+            <button type="button"  class="memmory" onclick="closeUserScreen(); createUser()">hinzufügen</button>
         </div>
-        <button type="button" class="btn btn-success" id="memmory" onclick="closeUserScreen(); createUser()">hinzufügen</button>
     
-    </div>
-    
-    <div id="addCostScreen">
-        <button type="button" id="XCostScreen" onclick="closeCostScreen()">X</button>
-        <h3>Neuer Buchungsbetrag</h3>
-        <br>
-        <div>
-        <select id="meinDropdown">
-        <option value="">-- Bitte wählen --</option>
-        </select>
-            
+        <div class="addScreen" id="addCostScreen">
+            <button type="button" class="XScreen" onclick="closeCostScreen()">X</button>
+            <h3>Neuer Buchungsbetrag</h3>
+            <br>
+            <div>
+            <select id="meinDropdown">
+            <option value="">-- Bitte wählen --</option>
+            </select>
+
+            </div>
+            <button type="button"  class="memmory" onclick="closeCostScreen(); createUser()">hinzufügen</button>
         </div>
-        <button type="button" class="btn btn-success" id="memmory" onclick="closeCostScreen(); createUser()">hinzufügen</button>
-    </div>
     <hr>
     
+
+        <div class="addScreen"id="addTripScreen">
+            <button type="button" class="XScreen" onclick="closeTripScreen()">X</button>
+            <h3>Reise hinzufügen</h3>
+            <br>
+            <div>
+                <span>Name</span>
+                <input type="text" id="tripName">
+            </div>
+            <button type="button" class="memmory" onclick="closeTripScreen(); createTrip()">hinzufügen</button>
+        </div>
+
+
     <div class="table">
         <p class="semiHeader">Ansicht</p>
         <ul id="persons"></ul>
