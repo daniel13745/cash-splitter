@@ -3,6 +3,7 @@ function toggle_nav() {
 }
 
 
+
 function openUserScreen() {
     document.getElementById('addUserScreen').style.display = 'block';
 }
@@ -72,6 +73,8 @@ function renderTripNav() {
             document.getElementById("title").textContent = trips[id].name;
             close_nav();
             renderPersons();
+            renderCosts();
+            renderBalances();
         });
         container.appendChild(p);
     });
