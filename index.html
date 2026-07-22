@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+
     <script src="./script.js"></script>
     <title>Document</title>
 </head>
@@ -12,6 +13,7 @@
     <div class="navbar" id="mainNav">
         <h2 class="nv_txt">Wähle deinen Trip!</h2>
         <p class="nv_txt">Einblick in deine Reisen</p>
+        <a class=" link" href="./impressum.html">Impressum</a>
         <br>
         <div id="tripNav"></div>
         <button type="button" class="editBtn" id="New_Trip" onclick="openTripScreen()">+ Reise hinzufügen</button>
@@ -26,8 +28,8 @@
 
     <div class="selectBtns">
         <p class="semiHeader">Bearbeiten</p>
-        <button type="button" class="editBtn" onclick="openUserScreen()">Benutzer</button>
-        <button type="button" class="editBtn" onclick="openCostScreen()">Kosten</button>
+        <button type="button" class="editBtn" onclick="openUserScreen()">+ Benutzer</button>
+        <button type="button" class="editBtn" onclick="openCostScreen()">+ Kosten</button>
     </div>
     
         <div class="addScreen" id="addUserScreen">
@@ -78,10 +80,12 @@
 
 
     <div class="table">
-            <p class="semiHeader">Ansicht</p>
-        <div class="balancesGrid" id="balances"></div>
-    <h3>Ausgaben</h3>
-        <ul id="costsList"></ul>
+        <p class="semiHeader">Ansicht</p>
+        <h3>Benutzer</h3>
+            <div class="balancesGrid" id="balances"></div>
+        <h3>Ausgaben</h3>
+            <div id="costsList"></div>
+            <ul id="persons"></ul>
     </div>
 </body>
 </html>

@@ -5,6 +5,11 @@ function toggle_nav() {
 
 
 function openUserScreen() {
+    if (!currentTripId) {
+        alert ("BItte zuerst eine Reise auswählen");
+        return;
+    }
+
     document.getElementById('addUserScreen').style.display = 'block';
 }
 
@@ -72,6 +77,8 @@ function renderTripNav() {
             currentTripId = id;
             document.getElementById("title").textContent = trips[id].name;
             close_nav();
+
+            const trip = trips[id];
             renderPersons();
             renderCosts();
             renderBalances();
@@ -119,12 +126,9 @@ document.addEventListener("DOMContentLoaded", function() {
     window.close_nav = close_nav; // damit renderTripNav sie nutzen kann
 
     renderTripNav();
+    renderBalances(); 
 });
 
-
-
-
-// Dropdown "Bezahlt von" + Checkboxen "Bezahlt für" mit den Personen der aktuellen Reise füllen
 function fillCostForm() {
     const trips = loadTrips();
     const persons = trips[currentTripId].persons;
@@ -148,8 +152,7 @@ function fillCostForm() {
         cb.type = "checkbox";
         cb.value = person;
         cb.className = "splitCheckbox";
-        cb.checked = true; // Standard: alle teilen sich die Kosten
-
+        cb.checked = true; 
         label.appendChild(cb);
         label.appendChild(document.createTextNode(" " + person));
         checkboxContainer.appendChild(label);
@@ -190,7 +193,6 @@ function createCost() {
     renderBalances();
 }
 
-// Saldo je Person berechnen: positiv = bekommt Geld, negativ = schuldet Geld
 function calculateBalances(trip) {
     const balance = {};
     trip.persons.forEach(p => balance[p] = 0);
