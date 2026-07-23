@@ -2,11 +2,9 @@ function toggle_nav() {
     document.getElementById('mainNav').classList.toggle('open');
 }
 
-
-
 function openUserScreen() {
     if (!currentTripId) {
-        alert ("BItte zuerst eine Reise auswählen");
+        alert ("Bitte zuerst eine Reise auswählen");
         return;
     }
 
@@ -123,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function close_nav() {
         document.getElementById('mainNav').classList.remove('open');
     }
-    window.close_nav = close_nav; // damit renderTripNav sie nutzen kann
+    window.close_nav = close_nav;
 
     renderTripNav();
     renderBalances(); 
@@ -247,7 +245,7 @@ function renderCosts() {
     const trips = loadTrips();
     const trip = trips[currentTripId];
 
-    const container = document.getElementById('costsList'); // musst du im HTML noch anlegen, siehe unten
+    const container = document.getElementById('costsList');
     if (!container) return;
     container.innerHTML = '';
 
@@ -257,3 +255,5 @@ function renderCosts() {
         container.appendChild(li);
     });
 }
+
+

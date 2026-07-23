@@ -132,15 +132,6 @@ h2{
     border-radius: 10px;
 }
 
-.XScreen{
-    background-color: red;
-    color: aliceblue;
-    border-width: 0px;
-    border-radius: 5px;
-    box-shadow: none;
-    width: 30px;
-    height: 30px;
-}
 
 #addCostScreen{
     display: none;
@@ -175,6 +166,17 @@ h2{
     margin: 5px auto;
     background-color: green;
     width: 80px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.XScreen{
+    background-color: red;
+    color: aliceblue;
+    border-width: 0px;
+    border-radius: 10px;
+    box-shadow: none;
+    width: 30px;
     height: 30px;
 }
 
@@ -212,7 +214,7 @@ h3{
 }
 .Vication.active {
     font-weight: bold;
-    color: #ff5722; /* oder eine Farbe, die zu deinem Design passt */
+    color: #ff5722;
 }
 
 
